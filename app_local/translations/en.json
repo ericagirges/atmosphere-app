@@ -1,0 +1,8 @@
+{
+  "app": {
+    "name": "Atmosphere",
+    "short_description": "Ticket keywords word cloud generator",
+    "long_description": "Displays common keywords found in active tickets in the aesthetic form of a word cloud.",
+    "installation_instructions": "Simply click install."
+  }
+}
