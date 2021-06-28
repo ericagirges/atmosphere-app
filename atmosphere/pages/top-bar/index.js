@@ -46,7 +46,7 @@ export default function TopBar() {
 
         console.log('wordslength', words.length);
         
-        const cleanedWords = stopword.removeStopwords(words);
+        const cleanedWords = stopword.removeStopwords(words, [...stopword.en, ...customStopwords]);
         console.log(cleanedWords)
         console.log('cleanedwordslength', cleanedWords.length)
 
