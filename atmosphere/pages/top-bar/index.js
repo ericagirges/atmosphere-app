@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import WordCloud from '../word-cloud/index';
 import { useZafClient } from '../zafClient';
 import customStopwords from '../customStopwords';
@@ -50,7 +51,7 @@ export default function TopBar() {
         console.log(cleanedWords)
         console.log('cleanedwordslength', cleanedWords.length)
 
-        for (const word of cleanedWords) {
+        for (const word of cleanedWords) 
           wordMap[word] = (wordMap[word] || 0) + 1;
         }
 
@@ -73,7 +74,9 @@ export default function TopBar() {
     <div>
       <OpeningContainer>
         <OpeningText>{"What's the weather like today"}</OpeningText>
+        <Link>
         <button onClick={generateWordCloud}>View Forecast</button>
+        </Link>
       </OpeningContainer>
     </div>
   );
