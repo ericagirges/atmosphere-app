@@ -11,7 +11,7 @@ const CloudText = styled.h2`
 `;
 
 export default function WordCloud() {
-  const [wordMap, setWordMap] = useState();
+  const [wordCloud, setWordCloud] = useState();
   const client = useZafClient();
 
   // When page has mounted - will trigger api call and word cloud generation
@@ -19,7 +19,8 @@ export default function WordCloud() {
     // GET request to incremental exports API to return all open tickets
     client.request(settings).then(function (data) {
       // will store all instances of words
-      const wordMap = {};
+      const wordObj = {};
+      const wordArr = [];
 
       // return all active ticket descriptions and turn into a single string
       const words = data.tickets
@@ -42,14 +43,21 @@ export default function WordCloud() {
       console.log("cleanedwordslength", cleanedWords.length);
 
       for (const word of cleanedWords) {
-        wordMap[word] = (wordMap[word] || 0) + 1;
+        wordObj[word] = (wordObj[word] || 0) + 1;
       }
 
-      setWordMap(wordMap);
+      for (const word in wordObj) {
+        wordArr.push({
+          value: word,
+          count: wordObj[word],
+        })
+      }
 
-      console.log(wordMap);
+      setWordCloud(wordArr)
+
+      console.log(wordArr)
     });
-  });
+  }, [client]);
 
   // function that generates word cloud
   // const generateWordCloud = (event) => {
