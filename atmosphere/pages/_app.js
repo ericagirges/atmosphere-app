@@ -1,7 +1,11 @@
 import Script from "next/script";
 import "../styles/globals.css";
+import {useZafClient} from './zafClient'
 
 function MyApp({ Component, pageProps }) {
+  // initialize the zafClient
+  useZafClient()
+
   return (
     <>
       <Script

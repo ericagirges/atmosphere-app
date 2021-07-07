@@ -1,18 +1,17 @@
-import { useState, useEffect } from "react";
-import { useZafClient } from "../zafClient";
-import customStopwords from "../customStopwords";
-import settings from "../api/request";
-import stopword from "stopword";
-import styled from "styled-components";
+import { useState, useEffect } from 'react';
+import { useZafClient } from '../zafClient';
+import customStopwords from '../customStopwords';
 
-const CloudText = styled.h2`
-  font-family: "Open Sans Condensed", sans-serif;
-  font-weight: 300;
-`;
+import settings from '../api/request';
+import stopword from 'stopword';
+import { TagCloud } from 'react-tagcloud';
+import styled from 'styled-components';
+
 
 export default function WordCloud() {
-  const [wordCloud, setWordCloud] = useState();
+  const [wordCloud, setWordCloud] = useState([]);
   const client = useZafClient();
+  console.log("Go: ", client)
 
   // When page has mounted - will trigger api call and word cloud generation
   useEffect(() => {
@@ -25,14 +24,14 @@ export default function WordCloud() {
       // return all active ticket descriptions and turn into a single string
       const words = data.tickets
         .filter(
-          (ticket) => ticket.status !== "closed" && ticket.status !== "solved"
+          (ticket) => ticket.status !== 'closed' && ticket.status !== 'solved'
         )
         .map((ticket) => ticket.description)
-        .join("")
-        .split(" ")
+        .join('')
+        .split(' ')
         .map((word) => word.toLowerCase());
 
-      console.log("wordslength", words.length);
+      console.log('wordslength', words.length);
       
       // remove most articles/prepositions that we don't want to count
       const cleanedWords = stopword.removeStopwords(words, [
@@ -40,17 +39,19 @@ export default function WordCloud() {
         ...customStopwords,
       ]);
       console.log(cleanedWords);
-      console.log("cleanedwordslength", cleanedWords.length);
+      console.log('cleanedwordslength', cleanedWords.length);
 
       for (const word of cleanedWords) {
         wordObj[word] = (wordObj[word] || 0) + 1;
       }
 
       for (const word in wordObj) {
-        wordArr.push({
-          value: word,
-          count: wordObj[word],
-        })
+        if(wordObj[word] > 6) {
+          wordArr.push({
+            value: word,
+            count: wordObj[word],
+          })
+        }
       }
 
       setWordCloud(wordArr)
@@ -65,9 +66,16 @@ export default function WordCloud() {
   //   getTickets();
   // };
 
+  if(!wordCloud) {
+    return <p>Word Cloud loading...</p>
+  }
+
   return (
     <div>
-      <CloudText>☁️ I am a Word Cloud! ☁️</CloudText>
+      <TagCloud minSize={12}
+    maxSize={35}
+    tags={wordCloud}
+    className="simple-cloud"/>
     </div>
   );
 }

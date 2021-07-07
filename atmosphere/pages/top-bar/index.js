@@ -24,7 +24,6 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function TopBar() {
-
   return (
     <div>
       <OpeningContainer>
