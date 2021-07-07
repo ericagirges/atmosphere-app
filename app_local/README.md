@@ -1,4 +1,4 @@
-# App name
+# Atmosphere
 
 [brief description of the app]
 
