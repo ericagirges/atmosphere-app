@@ -5,7 +5,6 @@ import customStopwords from '../customStopwords';
 import settings from '../api/request';
 import stopword from 'stopword';
 import { TagCloud } from 'react-tagcloud';
-import styled from 'styled-components';
 
 
 export default function WordCloud() {
