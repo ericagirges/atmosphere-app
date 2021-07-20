@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useZafClient } from '../zafClient';
 import customStopwords from '../customStopwords';
+import randomColor from 'randomcolor';
 
 import settings from '../api/request';
 import stopword from 'stopword';
@@ -45,7 +46,7 @@ export default function WordCloud() {
       }
 
       for (const word in wordObj) {
-        if(wordObj[word] > 6) {
+        if(wordObj[word] > 10) {
           wordArr.push({
             value: word,
             count: wordObj[word],
@@ -59,22 +60,30 @@ export default function WordCloud() {
     });
   }, [client]);
 
-  // function that generates word cloud
-  // const generateWordCloud = (event) => {
-  //   event.preventDefault();
-  //   getTickets();
-  // };
-
   if(!wordCloud) {
     return <p>Word Cloud loading...</p>
   }
 
+  // color scheme
+  const colorScheme = {
+    luminosity: 'bright',
+    format: 'rgb'
+  };
+
+
   return (
-    <div>
+    <div className='h-screen'>
       <TagCloud minSize={12}
     maxSize={35}
     tags={wordCloud}
-    className="simple-cloud"/>
+    colorOptions={colorScheme}
+    style={{ width: 400, textAlign: 'center' }}
+    className="simple-cloud px-4 py-5"/>
+    <button>Select a Group</button>
+    <div>
+      {/* map over agents groups in dropdown selection */}
+      <a href="#">{}</a>
+    </div>
     </div>
   );
 }
