@@ -13,3 +13,5 @@ How to upload and run in your Zendesk agent interface
 - Next.js
 - Zendesk App Framework
 - Tailwind CSS
+- Stopwords (Package used to strip articles/prepositions)
+- React-Tagcloud (Installed React component used to generate word cloud)
