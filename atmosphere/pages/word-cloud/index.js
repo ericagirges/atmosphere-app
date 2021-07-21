@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useZafClient } from '../zafClient';
 import customStopwords from '../customStopwords';
-import randomColor from 'randomcolor';
 
 import settings from '../api/request';
 import stopword from 'stopword';
@@ -17,6 +16,7 @@ export default function WordCloud() {
   useEffect(() => {
     // GET request to incremental exports API to return all open tickets
     client.request(settings).then(function (data) {
+      console.log('WHATS IN HERE: ', data)
       // will store all instances of words
       const wordObj = {};
       const wordArr = [];
@@ -29,7 +29,7 @@ export default function WordCloud() {
         .map((ticket) => ticket.description)
         .join('')
         .split(' ')
-        .map((word) => word.toLowerCase());
+        .map((word) => word.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""));
 
       console.log('wordslength', words.length);
       
@@ -79,11 +79,6 @@ export default function WordCloud() {
     colorOptions={colorScheme}
     style={{ width: 400, textAlign: 'center' }}
     className="simple-cloud px-4 py-5"/>
-    <button>Select a Group</button>
-    <div>
-      {/* map over agents groups in dropdown selection */}
-      <a href="#">{}</a>
-    </div>
     </div>
   );
 }
