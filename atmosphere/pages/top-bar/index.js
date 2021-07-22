@@ -15,7 +15,7 @@ export default function TopBar() {
         <div className='text-6xl animate-pulse fixed inset-x-0 top-0'>☁️</div>
         <div className='text-9xl animate-pulse fixed right-10 top-5'>☁️</div>
         <div className='text-6xl animate-pulse fixed right-0 top-10'>☁️</div>
-        <p className='font-sans text-lg italic'>{"What's the weather like today?"}</p>
+        <p className='font-sans text-xl italic'>{"What's the weather like today?"}</p>
         <Link href="/word-cloud">
         <a className='w-1/4 place-self-center px-3 py-1 transition ease-in duration-200 rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none'>View Forecast</a>
         </Link>
