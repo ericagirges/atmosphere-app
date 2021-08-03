@@ -16,7 +16,6 @@ export default function WordCloud() {
   useEffect(() => {
     // GET request to incremental exports API to return all open tickets
     client.request(settings).then(function (data) {
-      console.log('WHATS IN HERE: ', data)
       // will store all instances of words
       const wordObj = {};
       const wordArr = [];
