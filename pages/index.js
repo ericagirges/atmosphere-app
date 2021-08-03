@@ -3,7 +3,7 @@ import Head from 'next/head';
 export default function Home() {
   
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <meta
           name='Atmosphere'

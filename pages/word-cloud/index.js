@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useZafClient } from '../zafClient';
-import customStopwords from '../customStopwords';
+import { useZafClient } from '../../utils/zafClient';
+import customStopwords from '../../utils/customStopwords';
 
 import settings from '../api/request';
 import stopword from 'stopword';

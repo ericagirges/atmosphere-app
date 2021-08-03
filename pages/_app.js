@@ -1,5 +1,5 @@
 import Script from 'next/script';
-import { useZafClient } from './zafClient';
+import { useZafClient } from '../utils/zafClient';
 import 'tailwindcss/tailwind.css';
 import '../styles.css';
 
